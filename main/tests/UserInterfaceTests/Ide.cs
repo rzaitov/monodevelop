@@ -78,7 +78,7 @@ namespace UserInterfaceTests
 			);
 
 			var status = GetStatusMessage ();
-			Assert.AreEqual (status, "Build successful.");
+			Assert.AreEqual ("Build successful.", status);
 		}
 
 		static void WaitUntil (Func<bool> done, int timeout = 20000, int pollStep = 200)
