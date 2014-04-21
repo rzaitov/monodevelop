@@ -78,7 +78,7 @@ namespace ConsoleProject
 			Session.ExecuteCommand (RefactoryCommands.QuickFix);
 			Thread.Sleep (1000);
 
-			Session.TypeText ("\n"); // press enter
+			Session.PressKey (Gdk.Key.Return);
 			Ide.AssertBuild (errors: 0, warnings: 1);
 
 			var exe = srcDir.Combine ("bin", "Debug", projectName).ChangeExtension("exe");
