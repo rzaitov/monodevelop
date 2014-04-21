@@ -62,16 +62,6 @@ namespace UserInterfaceTests
 			Ide.CloseAll ();
 		}
 
-		void AssertExeHasOutput (string exe, string expectedOutput)
-		{
-			var sw = new StringWriter ();
-			var p = ProcessUtils.StartProcess (new ProcessStartInfo (exe), sw, sw, CancellationToken.None);
-			Assert.AreEqual (0, p.Result);
-			string output = sw.ToString ();
-
-			Assert.AreEqual (expectedOutput, output.Trim ());
-		}
-
 		[Test]
 		public void CreateBuildProject ()
 		{

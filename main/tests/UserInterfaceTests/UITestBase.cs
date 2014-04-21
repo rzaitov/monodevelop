@@ -26,6 +26,9 @@
 
 using NUnit.Framework;
 using MonoDevelop.Components.AutoTest;
+using System.Threading;
+using System.IO;
+using System.Diagnostics;
 
 namespace UserInterfaceTests
 {
@@ -48,6 +51,16 @@ namespace UserInterfaceTests
 		public virtual void Teardown ()
 		{
 			TestService.EndSession ();
+		}
+
+		protected void AssertExeHasOutput (string exe, string expectedOutput)
+		{
+			var sw = new StringWriter ();
+			var p = ProcessUtils.StartProcess (new ProcessStartInfo (exe), sw, sw, CancellationToken.None);
+			Assert.AreEqual (0, p.Result);
+			string output = sw.ToString ();
+
+			Assert.AreEqual (expectedOutput, output.Trim ());
 		}
 	}
 }
