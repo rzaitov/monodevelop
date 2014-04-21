@@ -81,6 +81,22 @@ namespace UserInterfaceTests
 			Assert.AreEqual ("Build successful.", status);
 		}
 
+		public static void AssertBuild(int errors, int warnings)
+		{
+			RunAndWaitForTimer (
+				() => Session.ExecuteCommand (ProjectCommands.BuildSolution),
+				"MonoDevelop.Ide.Counters.BuildItemTimer"
+			);
+
+			var status = GetStatusMessage ();
+
+			string errorString = GettextCatalog.GetPluralString("{0} error", "{0} errors", errors, errors);
+			string warningString = GettextCatalog.GetPluralString("{0} warning", "{0} warnings", warnings, warnings);
+
+			string expected = string.Format ("Build: {0}, {1}", errorString, warningString);
+			Assert.AreEqual (expected, status);
+		}
+
 		static void WaitUntil (Func<bool> done, int timeout = 20000, int pollStep = 200)
 		{
 			do {

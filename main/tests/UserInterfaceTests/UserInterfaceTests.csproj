@@ -47,6 +47,7 @@
     <Compile Include="ProcessUtils.cs" />
     <Compile Include="Gui.cs" />
     <Compile Include="Ide.cs" />
+    <Compile Include="TestForChallenge.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -59,6 +60,10 @@
       <Project>{7525BB88-6142-4A26-93B9-A30C6983390A}</Project>
       <Name>MonoDevelop.Core</Name>
       <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\addins\MonoDevelop.Refactoring\MonoDevelop.Refactoring.csproj">
+      <Project>{100568FC-F4E8-439B-94AD-41D11724E45B}</Project>
+      <Name>MonoDevelop.Refactoring</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>
